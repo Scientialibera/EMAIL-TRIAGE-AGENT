@@ -1,0 +1,22 @@
+[
+  {
+    "mailbox": "shared-inbox@contoso.com",
+    "display_name": "Shared Inbox",
+    "notify_user_upns": ["admin@contoso.com"],
+    "auto_draft": true,
+    "rules": {
+      "skip_senders": ["noreply@contoso.com", "mailer-daemon@contoso.com"],
+      "always_urgent_senders": ["ceo@contoso.com", "legal@contoso.com"]
+    }
+  },
+  {
+    "mailbox": "support@contoso.com",
+    "display_name": "Support Inbox",
+    "notify_user_upns": ["support-lead@contoso.com"],
+    "auto_draft": true,
+    "rules": {
+      "skip_senders": [],
+      "always_urgent_senders": []
+    }
+  }
+]

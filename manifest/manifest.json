@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "version": "1.0.0",
+  "id": "{{BOT_ID}}",
+  "developer": {
+    "name": "Email Triage Agent",
+    "websiteUrl": "https://{{APP_DOMAIN}}",
+    "privacyUrl": "https://{{APP_DOMAIN}}/privacy",
+    "termsOfUseUrl": "https://{{APP_DOMAIN}}/terms"
+  },
+  "name": {
+    "short": "Email Triage Agent",
+    "full": "AI-Powered Email Classification and Auto-Drafting Bot"
+  },
+  "description": {
+    "short": "Classifies incoming emails, drafts replies, and tracks response SLAs",
+    "full": "Email Triage Agent monitors shared mailboxes via Graph subscriptions, classifies emails using OpenAI function calling (urgent, needs-reply, FYI, spam), auto-drafts replies for review, and feeds analytics into a Fabric pipeline for classification accuracy, response time SLAs, and topic trend analysis."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#E74C3C",
+  "bots": [
+    {
+      "botId": "{{BOT_ID}}",
+      "scopes": ["personal", "team", "groupChat"],
+      "supportsFiles": false,
+      "isNotificationOnly": false,
+      "commandLists": [
+        {
+          "scopes": ["personal"],
+          "commands": [
+            { "title": "inbox", "description": "Show today's triage summary" },
+            { "title": "pending", "description": "List emails awaiting draft review" },
+            { "title": "stats", "description": "Classification accuracy and response time metrics" },
+            { "title": "refresh", "description": "Reload mailbox configuration from blob" }
+          ]
+        }
+      ]
+    }
+  ],
+  "permissions": ["identity", "messageTeamMembers"],
+  "validDomains": ["{{APP_DOMAIN}}"]
+}
