@@ -109,6 +109,24 @@ Scheduled at 17:00 UTC, aggregates the day's triage results per mailbox:
 | `03_enrich_main`     | Silver  | Response time calculation, accuracy flags, temporal features  |
 | `04_aggregate_main`  | Gold    | Inbox metrics, classification accuracy, SLA compliance, topic trends |
 
+**Fabric Workspace Structure:**
+
+```
+notebooks/
+  main/
+    01_ingest_main
+    02_transform_main
+    03_enrich_main
+    04_aggregate_main
+  modules/
+    config_module
+    utils_module
+lh_email_landing             ← raw Cosmos snapshots
+lh_email_bronze              ← normalized, deduplicated
+lh_email_silver              ← enriched with response times + patterns
+lh_email_gold                ← SLA metrics, trends, accuracy
+```
+
 **Gold Tables:**
 
 - `inbox_metrics` -- daily email counts by classification per mailbox
@@ -204,7 +222,7 @@ notepad deploy/assets/config/mailbox_config.json
 # 3. Deploy application + seed config + prompts
 .\deploy\deploy-app.ps1
 
-# 4. Deploy Fabric pipeline (optional)
+# 4. Deploy Fabric pipeline (optional -- lakehouses, folders, notebooks)
 .\deploy\deploy-fabric.ps1
 
 # 5. Upload teams-manifest.zip via Teams Admin Center
