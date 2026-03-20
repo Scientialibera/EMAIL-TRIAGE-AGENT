@@ -250,6 +250,13 @@ Recommended Fabric notebook deployment approach for this repo:
 - Keep deploy idempotent: rerun scripts instead of making manual workspace fixes
 - Fail fast on prerequisites (`az login`, correct workspace selection, Fabric capacity enabled)
 
+Quick validation checklist before every push:
+
+- Verify `deploy/deploy.config.toml` points to the expected Fabric workspace and lakehouses
+- Run `pwsh ./deploy/deploy-fabric.ps1` from repo root
+- Confirm modules deploy before main notebooks
+- Re-run deploy after fixes instead of applying manual workspace-only edits
+
 ## Cosmos DB Schema
 
 Database: `email-triage`, Container: `emails` (partition key: `/mailbox`)
