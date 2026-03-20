@@ -239,6 +239,17 @@ notepad deploy/assets/config/mailbox_config.json
 
 Grant these in the Azure Portal under **Entra ID > App registrations > API permissions**.
 
+## Fabric Deployment Lessons Learned
+
+Recommended Fabric notebook deployment approach for this repo:
+
+- Run Fabric push from repo root with `pwsh ./deploy/deploy-fabric.ps1`
+- Keep deploy target values in `deploy/deploy.config.toml` (workspace/lakehouses/folders) and avoid ad hoc overrides
+- Treat `deploy/assets/notebooks/` as source of truth and push from git-managed files only
+- Deploy in predictable order: modules first, then main notebooks
+- Keep deploy idempotent: rerun scripts instead of making manual workspace fixes
+- Fail fast on prerequisites (`az login`, correct workspace selection, Fabric capacity enabled)
+
 ## Cosmos DB Schema
 
 Database: `email-triage`, Container: `emails` (partition key: `/mailbox`)
